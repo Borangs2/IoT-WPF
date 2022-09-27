@@ -21,9 +21,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Title -->
-                <TextBlock Grid.Column="0" Text="{Binding ElementName=deviceTile DeviceTitle}"  Style="{StaticResource DeviceTileTitle}"/>
+                <TextBlock Grid.Column="0" Text="{Binding ElementName=deviceTile, Path=DeviceTitle}"  Style="{StaticResource DeviceTileTitle}"/>
                 <!-- Type -->
-                <TextBlock Grid.Column="1" Text="{Binding ElementName=deviceTile DeviceType}" Style="{StaticResource DeviceTileTitle}"/>
+                <TextBlock Grid.Column="1" Text="{Binding ElementName=deviceTile, Path=DeviceType}" Style="{StaticResource DeviceTileTitle}"/>
             </Grid>
             <!-- Icon -->
             <TextBlock Grid.Row="1" x:Name="DeviceIcon" Text="ICON" Style="{StaticResource DeviceTileIcon}"></TextBlock>
@@ -36,7 +36,7 @@
 
                 <!-- On/Off Text -->
                 <TextBlock Grid.Column="0" Text="On/Off" Style="{StaticResource DeviceTileOnOffText}"/>
-                
+                <!-- TODO: Style And implement the button -->
                 <CheckBox Grid.Column="1" Style="{StaticResource DeviceTileOnOffSwitch}"/>
             </Grid>
 

@@ -16,6 +16,7 @@
     <Style x:Key="PageHeader" TargetType="Border" BasedOn="{StaticResource PageBorder}">
         <Setter Property="Background" Value="#F0F0F0"/>
         <Setter Property="Opacity" Value="0.7"/>
+        <Setter Property="Padding" Value="10"/>
     </Style>
 
 

@@ -26,8 +26,13 @@
                     </Grid>
                 </Border>
 
+                <Grid Grid.Row="1">
+                    <components:DeviceTile 
+                        DeviceTitle="Title" 
+                        DeviceType="Type" 
+                        DeviceIconActive="Icon"/>
 
-
+                </Grid>
 
 
             </Grid>
