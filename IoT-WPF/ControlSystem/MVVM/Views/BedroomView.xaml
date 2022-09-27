@@ -9,7 +9,9 @@
 
     <Border x:Name="Kitchen" Style="{StaticResource PageBorder}">
         <Border CornerRadius="10">
-
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="../../Assets/Images/Bedroom.jpg"></ImageBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
