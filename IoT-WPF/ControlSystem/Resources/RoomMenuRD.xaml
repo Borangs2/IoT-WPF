@@ -13,13 +13,13 @@
     <Style x:Key="RoomMenuButton" TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
-        <Setter Property="Padding" Value="5 2"/>
+        <Setter Property="Padding" Value="8 10"/>
         <Setter Property="Margin" Value="20 2"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome-Solid}"/>
-        <Setter Property="FontSize" Value="22"/>
-        <Setter Property="Width" Value="50"></Setter>
-        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="50"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -29,7 +29,7 @@
                             CornerRadius="7" 
                             BorderBrush="#FFF" 
                             BorderThickness="1">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -41,7 +41,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#FFF" Padding="{TemplateBinding Padding}" CornerRadius="7" BorderBrush="#FFF" BorderThickness="1" >
+                            <Border Background="#FFF" Padding="{TemplateBinding Padding}" CornerRadius="7" BorderBrush="#FFFFFF" BorderThickness="1" >
                                 <ContentPresenter/>
                             </Border>
                         </ControlTemplate>
