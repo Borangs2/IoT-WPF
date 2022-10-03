@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ControlSystem.MVVM.Views
+namespace ControlSystem.Components
 {
     /// <summary>
-    /// Interaction logic for BedroomView.xaml
+    /// Interaction logic for RoomMenu.xaml
     /// </summary>
-    public partial class BedroomView : UserControl
+    public partial class RoomMenu : UserControl
     {
-        public BedroomView()
+        public RoomMenu()
         {
             InitializeComponent();
+        }
+
+        private void BtnClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

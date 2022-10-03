@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Resources/FontsRD.xaml"/>
                 <ResourceDictionary Source="Resources/PagesRD.xaml"/>
                 <ResourceDictionary Source="Resources/DeviceTileRD.xaml"/>
+                <ResourceDictionary Source="Resources/RoomMenuRD.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
 

@@ -16,7 +16,6 @@
     <Style x:Key="PageHeader" TargetType="Border" BasedOn="{StaticResource PageBorder}">
         <Setter Property="Background" Value="#F0F0F0"/>
         <Setter Property="Opacity" Value="0.7"/>
-        <Setter Property="Padding" Value="10"/>
     </Style>
 
 
@@ -26,35 +25,4 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-
-
-    <Style x:Key="CloseButton" TargetType="Button">
-        <Setter Property="Content" Value="&#xf00d;"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Padding" Value="10"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="FontSize" Value="45"/>
-        <Setter Property="FontFamily" Value="{StaticResource FontAwesome-Solid}"/>
-        <Setter Property="Foreground" Value="#404090"/>
-        <Setter Property="Margin" Value="15"/>
-        <Setter Property="BorderThickness" Value="0"/>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="#79d"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
 </ResourceDictionary>

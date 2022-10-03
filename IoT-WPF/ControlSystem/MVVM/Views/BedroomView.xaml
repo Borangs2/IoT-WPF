@@ -21,8 +21,12 @@
 
                 <Border Style="{StaticResource PageHeader}">
                     <Grid Grid.Row="0">
-                        <TextBlock Text="Bedroom" Style="{StaticResource HeaderTitle}"/>
-                        <Button Grid.Row="0" x:Name="BtnClose" Click="BtnClose_OnClick" Style="{StaticResource CloseButton}"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Bedroom" Style="{StaticResource HeaderTitle}"/>
+                        <components:RoomMenu Grid.Column="1"/>
                     </Grid>
                 </Border>
 
