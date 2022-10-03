@@ -46,9 +46,63 @@
     <!-- Toggle button TODO: Create Styling-->
 
     <Style x:Key="DeviceTileOnOffSwitch" TargetType="ToggleButton">
-        
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Border x:Name="ToggleButtonBackground" Background="#8f8f8f" CornerRadius="13" Height="25" Width="50"/>
+                        <Ellipse x:Name="ToggleLever" Fill="#fbfbfb" Height="19"  Width="19" HorizontalAlignment="Left" Margin="3 0 0 0"/>
+                    </Grid>
 
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                            Storyboard.TargetName="ToggleButtonBackground" 
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="#04d504"
+                                            Duration="0:0:0:0.2"
+                                        />
+                                        <ThicknessAnimation 
+                                            Storyboard.TargetName="ToggleLever"
+                                            Storyboard.TargetProperty="Margin"
+                                            To="28 0 0 0"
+                                            Duration="0:0:0:0.2"
+                                            />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <!--Switch to On-->
+
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                            Storyboard.TargetName="ToggleButtonBackground" 
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="#8f8f8f"
+                                            Duration="0:0:0:0.2"
+                                        />
+                                        <ThicknessAnimation 
+                                            Storyboard.TargetName="ToggleLever" 
+                                            Storyboard.TargetProperty="Margin"
+                                            To="3 0 0 0"
+                                            Duration="0:0:0:0.2"
+                                        />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                            <!--Switch to Off-->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
