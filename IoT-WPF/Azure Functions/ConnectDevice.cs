@@ -23,17 +23,18 @@ namespace Azure_Functions
         {
             try
             {
-                var body = JsonConvert.DeserializeObject<DeviceRequestModel>(await new StreamReader(req.Body).ReadToEndAsync());
-                var device = await _registryManager.AddDeviceAsync(new Device(body?.DeviceId));
+                using var registryManager = RegistryManager.CreateFromConnectionString(Environment.GetEnvironmentVariable("IoTHub"));
+                var device = await registryManager.GetDeviceAsync(req.Query["deviceId"]);
 
-                var connectionString =
-                    $"{Environment.GetEnvironmentVariable("IoTHub").Split(";")[0]};DeviceId={device.Id};SharedAccessKey={device.Authentication.SymmetricKey.PrimaryKey}";
+                //    if null   do this
+                device ??= await registryManager.AddDeviceAsync(new Device(req.Query["deviceId"]));
 
-                return new OkObjectResult(connectionString);
+
+                return new OkObjectResult($"{Environment.GetEnvironmentVariable("IoTHub").Split(";")};DeviceId={device.Id};SharedAccessKey={device.Authentication.SymmetricKey.PrimaryKey}");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult(ex.Message);
             }
         }
     }
