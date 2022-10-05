@@ -53,15 +53,29 @@ namespace ControlSystem.Components
             set { SetValue(DeviceIconInactiveProperty, value); }
         }
 
-        public static readonly DependencyProperty DeviceFontInactiveProperty = DependencyProperty.Register("DeviceFontActive", typeof(string), typeof(DeviceTile));
+        public static readonly DependencyProperty DeviceFontActiveProperty = DependencyProperty.Register("DeviceFontActive", typeof(string), typeof(DeviceTile));
         public string DeviceFontActive
+        {
+            get { return (string)GetValue(DeviceFontActiveProperty); }
+            set { SetValue(DeviceFontActiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty DeviceFontInactiveProperty = DependencyProperty.Register("DeviceFontInactive", typeof(string), typeof(DeviceTile));
+        public string DeviceFontInactive
+        {
+            get { return (string)GetValue(DeviceFontActiveProperty); }
+            set { SetValue(DeviceFontActiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty DeviceStateInactiveProperty = DependencyProperty.Register("DeviceStateActive", typeof(string), typeof(DeviceTile));
+        public string DeviceStateActive
         {
             get { return (string)GetValue(DeviceFontInactiveProperty); }
             set { SetValue(DeviceFontInactiveProperty, value); }
         }
 
-        public static readonly DependencyProperty DeviceFontActiveProperty = DependencyProperty.Register("DeviceFontInactive", typeof(string), typeof(DeviceTile));
-        public string DeviceFontInactive
+        public static readonly DependencyProperty DeviceStateActiveProperty = DependencyProperty.Register("DeviceStateInactive", typeof(string), typeof(DeviceTile));
+        public string DeviceStateInactive
         {
             get { return (string)GetValue(DeviceFontActiveProperty); }
             set { SetValue(DeviceFontActiveProperty, value); }

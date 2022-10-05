@@ -26,4 +26,10 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
+
+    <Style x:Key="PageTileContainer" TargetType="ItemsControl">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>
