@@ -31,7 +31,7 @@
     <Style x:Key="DeviceTileIcon" TargetType="TextBlock">
         <Setter Property="FontSize" Value="40"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <!-- Text for the toggle button -->
@@ -66,13 +66,13 @@
                                             Storyboard.TargetName="ToggleButtonBackground" 
                                             Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                             To="#04d504"
-                                            Duration="0:0:0:0.2"
+                                            Duration="0:0:0:0.15"
                                         />
                                         <ThicknessAnimation 
                                             Storyboard.TargetName="ToggleLever"
                                             Storyboard.TargetProperty="Margin"
                                             To="28 0 0 0"
-                                            Duration="0:0:0:0.2"
+                                            Duration="0:0:0:0.15"
                                             />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -86,13 +86,13 @@
                                             Storyboard.TargetName="ToggleButtonBackground" 
                                             Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                             To="#8f8f8f"
-                                            Duration="0:0:0:0.2"
+                                            Duration="0:0:0:0.15"
                                         />
                                         <ThicknessAnimation 
                                             Storyboard.TargetName="ToggleLever" 
                                             Storyboard.TargetProperty="Margin"
                                             To="3 0 0 0"
-                                            Duration="0:0:0:0.2"
+                                            Duration="0:0:0:0.15"
                                         />
                                     </Storyboard>
                                 </BeginStoryboard>

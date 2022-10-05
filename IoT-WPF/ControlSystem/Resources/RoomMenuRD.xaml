@@ -3,10 +3,10 @@
 
     <Style x:Key="RoomMenuBorder" TargetType="Border">
         <Setter Property="Background" Value="Gray"/>
-        <Setter Property="Opacity" Value="0.6"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="15 12"/>
+        <Setter Property="CornerRadius" Value="0 10 0 0"/>
 
     </Style>
 
@@ -27,7 +27,7 @@
                     <Border Background="{TemplateBinding Background}" 
                             Padding="{TemplateBinding Padding}" 
                             CornerRadius="7" 
-                            BorderBrush="#FFF" 
+                            BorderBrush="#FFFFFF" 
                             BorderThickness="1">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -41,8 +41,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#FFF" Padding="{TemplateBinding Padding}" CornerRadius="7" BorderBrush="#FFFFFF" BorderThickness="1" >
-                                <ContentPresenter/>
+                            <Border Background="#FFF" 
+                                    Padding="{TemplateBinding Padding}" 
+                                    CornerRadius="7" 
+                                    BorderBrush="#FFFFFF"
+                                    BorderThickness="1" >
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -53,8 +57,13 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border Background="#787878" Padding="{TemplateBinding Padding}" CornerRadius="7" BorderBrush="#FFFFFF" BorderThickness="1" >
-                                <ContentPresenter/>
+                            <Border 
+                                Background="#383838" 
+                                Padding="{TemplateBinding Padding}" 
+                                CornerRadius="7" BorderBrush="#FFFFFF" 
+                                BorderThickness="1" >
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>

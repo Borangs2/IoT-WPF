@@ -11,6 +11,8 @@
     <None Remove="Assets\Fonts\fa-regular-400.ttf" />
     <None Remove="Assets\Fonts\fa-solid-900.ttf" />
     <None Remove="Assets\Images\Bedroom.jpg" />
+    <None Remove="Assets\Images\Kitchen.jpg" />
+    <None Remove="Assets\Images\Living Room.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +23,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\Bedroom.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Kitchen.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Living Room.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

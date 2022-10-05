@@ -9,37 +9,26 @@
              d:DesignHeight="720" d:DesignWidth="1080">
 
     <Border x:Name="Bedroom" Style="{StaticResource PageBorder}">
-        <Border CornerRadius="10">
-            <Border.Background>
-                <ImageBrush Stretch="Fill" ImageSource="../../Assets/Images/Bedroom.jpg"></ImageBrush>
-            </Border.Background>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <Border.Background>
+            <ImageBrush Stretch="Fill" ImageSource="../../Assets/Images/Bedroom.jpg"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Border Style="{StaticResource PageHeader}">
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Title}" Style="{StaticResource HeaderTitle}"/>
-                        <components:RoomMenu Grid.Column="1"/>
-                    </Grid>
-                </Border>
 
-                <Grid Grid.Row="1">
-                    <components:DeviceTile 
+
+            <Grid Grid.Row="1">
+                <components:DeviceTile 
                         DeviceTitle="Title" 
                         DeviceType="Type" 
                         DeviceIconActive="Icon"/>
 
-                </Grid>
-
-
             </Grid>
-        </Border>
+
+
+        </Grid>
     </Border>
 </UserControl>

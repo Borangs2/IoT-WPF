@@ -3,7 +3,7 @@
     
     <Style x:Key="PageBorder" TargetType="Border">
         <Setter Property="Background" Value="AntiqueWhite"/>
-        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="CornerRadius" Value="0 0 10 10"/>
 
         <Setter Property="Effect">
             <Setter.Value>
@@ -13,9 +13,10 @@
     </Style>
 
 
-    <Style x:Key="PageHeader" TargetType="Border" BasedOn="{StaticResource PageBorder}">
+    <Style x:Key="PageHeader" TargetType="Border">
         <Setter Property="Background" Value="#F0F0F0"/>
-        <Setter Property="Opacity" Value="0.7"/>
+        <Setter Property="CornerRadius" Value="10 10 0 0"/>
+
     </Style>
 
 

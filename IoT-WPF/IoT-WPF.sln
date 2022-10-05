@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlSystem", "ControlSystem\ControlSystem.csproj", "{FF885A1B-2B4E-42CF-98A5-65AB187C78F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure Functions", "Azure Functions\Azure Functions.csproj", "{1F647BAD-1D33-4888-9E10-CCFF47703341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure Functions", "Azure Functions\Azure Functions.csproj", "{1F647BAD-1D33-4888-9E10-CCFF47703341}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devices", "Devices", "{1706F7C4-B6C4-4F47-96BB-EBE039B0998B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

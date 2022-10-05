@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlSystem"
         xmlns:viewModels="clr-namespace:ControlSystem.MVVM.ViewModels"
+        xmlns:components="clr-namespace:ControlSystem.Components"
 
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -23,12 +24,25 @@
         <Border MouseDown="TitleBar_MouseDown" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <ContentControl Grid.Row="0" Content="{Binding CurrentView }"/>
-                <!--Main Menu-->
+                <!--Header-->
+                <Border Grid.Row="0" Style="{StaticResource PageHeader}">
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding CurrentView.Title}" Style="{StaticResource HeaderTitle}"/>
+                        <!--Main Menu-->
+                        <components:RoomMenu Grid.Column="1"/>
+                    </Grid>
+                </Border>
+                
+                <ContentControl Grid.Row="1" Content="{Binding CurrentView }"/>
+
             </Grid>
         </Border>
     </Grid>

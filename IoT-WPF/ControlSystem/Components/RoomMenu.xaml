@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:ControlSystem.Components"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="600">
-    <Border Style="{StaticResource RoomMenuBorder}">
+    <Border Style="{StaticResource RoomMenuBorder}" >
         <Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <RadioButton Command="{Binding KitchenViewCommand}" Style="{StaticResource RoomMenuButton}" Content="&#xf236;" IsChecked="True"/>
-                <RadioButton Command="{Binding BedroomViewCommand}" Style="{StaticResource RoomMenuButton}" Content="&#xf517;"/>
+                <RadioButton Command="{Binding BedroomViewCommand}" Style="{StaticResource RoomMenuButton}" Content="&#xf236;" IsChecked="True"/>
+                <RadioButton Command="{Binding KitchenViewCommand}" Style="{StaticResource RoomMenuButton}" Content="&#xf517;"/>
                 <RadioButton Command="{Binding LivingRoomViewCommand}" Style="{StaticResource RoomMenuButton}" Content="&#xf26c;"/>
             </StackPanel>
             <Button x:Name="BtnClose" Click="BtnClose_OnClick" Style="{StaticResource CloseButton}"/>
