@@ -3,7 +3,7 @@
 public class DeviceItem
 {
     public string DeviceId { get; set; } = "";
-    public string DeviceName { get; set; } = "";
+    public string DeviceTitle { get; set; } = "";
     public string DeviceType { get; set; } = "";
 
 

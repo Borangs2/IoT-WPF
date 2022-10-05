@@ -36,6 +36,7 @@
   <ItemGroup>
     <Folder Include="MVVM\Models\" />
     <Folder Include="MVVM\ViewModels\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>

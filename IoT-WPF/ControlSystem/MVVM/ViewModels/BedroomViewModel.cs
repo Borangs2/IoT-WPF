@@ -24,7 +24,7 @@ public class BedroomViewModel
     public BedroomViewModel()
     {
         _deviceItems = new ObservableCollection<DeviceItem>();
-        _deviceService.PopulateDeviceItemsAsync(Title, _deviceItems).ConfigureAwait(false);
+        PopulateDeviceItemsAsync().ConfigureAwait(false);
         SetTimer(TimeSpan.FromSeconds(30));
     }
 
@@ -41,7 +41,16 @@ public class BedroomViewModel
 
     private async void timer_tick(object sender, EventArgs e)
     {
-        await _deviceService.PopulateDeviceItemsAsync(Title, _deviceItems);
-        await _deviceService.UpdateDeviceItemsAsync(_deviceItems);
+        await PopulateDeviceItemsAsync();
+        await UpdateDeviceItemsAsync();
+    }
+
+    public async Task PopulateDeviceItemsAsync()
+    {
+        _deviceItems = await _deviceService.PopulateDeviceItemsAsync(Title, _deviceItems);
+    }
+    public async Task UpdateDeviceItemsAsync()
+    {
+        _deviceItems = await _deviceService.UpdateDeviceItemsAsync(_deviceItems);
     }
 }

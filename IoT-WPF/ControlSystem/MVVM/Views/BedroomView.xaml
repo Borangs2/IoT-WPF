@@ -21,6 +21,25 @@
 
 
             <Grid Grid.Row="1">
+                <ItemsControl x:Name="deviceTileListView" ItemsSource="{Binding DeviceItems}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <components:DeviceTile 
+                                DeviceTitle="{Binding DeviceTitle}"
+                                DeviceType="{Binding DeviceType}"
+                                DeviceIconActive="{Binding DeviceIconActive}"
+                                DeviceIconInactive="{Binding DeviceIconInactive}"
+                                DeviceFontActive="{Binding DeviceFontActive}"
+                                DeviceFontInactive="{Binding DeviceFontInactive}"
+                            />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
                 <components:DeviceTile 
                         DeviceTitle="Title" 
                         DeviceType="Type" 

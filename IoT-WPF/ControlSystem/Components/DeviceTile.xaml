@@ -26,7 +26,7 @@
                 <TextBlock Grid.Column="1" Text="{Binding ElementName=deviceTile, Path=DeviceType}" Style="{StaticResource DeviceTileTitle}"/>
             </Grid>
             <!-- Icon -->
-            <TextBlock Grid.Row="1" x:Name="DeviceIcon" Text="ICON" Style="{StaticResource DeviceTileIcon}"></TextBlock>
+            <TextBlock Grid.Row="1" x:Name="DeviceIcon" Style="{StaticResource DeviceTileIcon}"></TextBlock>
     
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>

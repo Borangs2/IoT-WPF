@@ -20,7 +20,8 @@ namespace ControlSystem.Services
 
         public async Task<ObservableCollection<DeviceItem>> PopulateDeviceItemsAsync(string locationName, ObservableCollection<DeviceItem> _deviceItems)
         {
-            var result = _registryManager.CreateQuery($"SELECT * FROM devices WHERE location = '{locationName.ToLower()}'");
+            
+            var result = _registryManager.CreateQuery($"SELECT * FROM devices WHERE properties.reported.location = '{locationName.ToLower()}'");
 
             if (result.HasMoreResults)
             {
@@ -34,14 +35,14 @@ namespace ControlSystem.Services
                             DeviceId = twin.DeviceId,
                         };
 
-                        try { device.DeviceName = twin.Properties.Reported["deviceName"]; }
+                        try { device.DeviceTitle = twin.Properties.Reported["deviceTitle"].ToString(); }
                         catch
                         {
-                            //device.DeviceName = twin.DeviceId;
-                            device.DeviceName = "Name Unknown";
+                            //device.DeviceTitle = twin.DeviceId;
+                            device.DeviceTitle = "Name Unknown";
                         }
 
-                        try { device.DeviceType = twin.Properties.Reported["deviceType"]; }
+                        try { device.DeviceType = twin.Properties.Reported["deviceType"].ToString(); }
                         catch { device.DeviceType = "Type Unknown"; }
 
 
