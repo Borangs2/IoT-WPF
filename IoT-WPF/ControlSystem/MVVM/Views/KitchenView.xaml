@@ -11,23 +11,8 @@
         <Border.Background>
             <ImageBrush Stretch="Fill" ImageSource="../../Assets/Images/Kitchen.jpg"/>
         </Border.Background>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        
+        <components:ViewContent/>
 
-
-
-            <Grid Grid.Row="1">
-                <components:DeviceTile 
-                        DeviceTitle="Title" 
-                        DeviceType="Type" 
-                        DeviceIconActive="Icon"/>
-
-            </Grid>
-
-
-        </Grid>
     </Border>
 </UserControl>
