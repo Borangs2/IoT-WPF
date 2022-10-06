@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ControlSystem.Components"
              mc:Ignorable="d" 
              x:Name="deviceTile"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="200">
     <Border Style="{StaticResource DeviceTileBorder}">
         <Grid>
             <Grid.RowDefinitions>
@@ -28,6 +28,7 @@
             <!-- Icon -->
             <TextBlock Grid.Row="1" x:Name="DeviceIcon" Style="{StaticResource DeviceTileIcon}"></TextBlock>
     
+            <!--TODO: Om tiden tillåter. Lägg till wifi symbol som visar om den är uppkopplad eller inte &#zf1eb; &#xf6ac;-->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -36,7 +37,6 @@
 
                 <!-- On/Off Text -->
                 <TextBlock Grid.Column="0" Style="{StaticResource DeviceTileOnOffText}"/>
-                <!-- TODO: Style And implement the button -->
                 <CheckBox Grid.Column="1" x:Name="OnOffSwitch" Style="{StaticResource DeviceTileOnOffSwitch}"/>
             </Grid>
 
