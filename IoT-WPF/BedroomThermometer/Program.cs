@@ -78,34 +78,27 @@ Console.WriteLine("Device Connected");
 
 // ----------------------------------------- \\
 
-bool poweredPreviousState = true;
+var currentTemperature = 20;
+var currentHumidity = 40;
+
 
 while (true)
 {
     if (connected)
     {
-        if (poweredState == poweredPreviousState)
-        {
-            poweredPreviousState = !poweredState;
+        var random = new Random();
+        currentTemperature = currentTemperature + random.Next(-2, 3);
+        currentHumidity = currentHumidity + random.Next(-5, 6);
 
-            // d2c
-            var json = JsonConvert.SerializeObject(new { lightState = poweredState });
-            var message = new Message(Encoding.UTF8.GetBytes(json));
+        Console.WriteLine($"Temperature: {currentTemperature}");
+        Console.WriteLine($"Humidity: {currentHumidity}");
+        Console.WriteLine();
 
-            message.Properties.Add("deviceId", deviceId.ToString());
-            message.Properties.Add("deviceName", deviceName);
-            message.Properties.Add("deviceType", deviceType);
-            message.Properties.Add("deviceOwner", deviceOwner);
+        twinCollection = new TwinCollection();
+        twinCollection["currentTemperature"] = currentTemperature;
+        twinCollection["currentHumidity"] = currentHumidity;
 
-            await _deviceClient.SendEventAsync(message);
-
-            // device twin
-            twinCollection = new TwinCollection();
-            twinCollection["poweredState"] = poweredState;
-            await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
-
-            Console.WriteLine($"Message sent {DateTime.Now}");
-        }
+        await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
     }
     await Task.Delay(interval);
 }
