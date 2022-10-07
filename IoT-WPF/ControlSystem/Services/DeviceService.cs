@@ -48,7 +48,7 @@ namespace ControlSystem.Services
 
                         switch (device.DeviceType.ToLower())
                         {
-                            case "fan":
+                            case "light":
                                 device.IconActive = "\uf0eb";
                                 device.IconInactive = "\uf0eb";
                                 device.FontActive = "/Assets/Fonts/fa-Solid-900.ttf#Font Awesome 6 Free Solid";
@@ -57,7 +57,7 @@ namespace ControlSystem.Services
                                 device.StateInactive = "Off";
                                 break;
 
-                            case "light":
+                            case "fan":
                                 device.IconActive = "\uf863";
                                 device.IconInactive = "\uf863";
                                 device.FontActive = "/Assets/Fonts/fa-Solid-900.ttf#Font Awesome 6 Free Solid";
