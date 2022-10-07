@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ControlSystem.Components"
              mc:Ignorable="d" 
              x:Name="deviceTile"
-             d:DesignHeight="200" d:DesignWidth="200">
+            >
     <Border Style="{StaticResource DeviceTileBorder}">
         <Grid>
             <Grid.RowDefinitions>
@@ -15,20 +15,20 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
                 <!-- Title -->
-                <TextBlock Grid.Column="0" Text="{Binding ElementName=deviceTile, Path=DeviceTitle}"  Style="{StaticResource DeviceTileTitle}" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="0" Text="{Binding ElementName=deviceTile, Path=DeviceTitle}"  Style="{StaticResource DeviceTileTitle}"/>
                 <!-- Type -->
-                <TextBlock Grid.Column="1" Text="{Binding ElementName=deviceTile, Path=DeviceType}" Style="{StaticResource DeviceTileTitle}" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Row="1" Text="{Binding ElementName=deviceTile, Path=DeviceType}" Style="{StaticResource DeviceTileTitle}" />
             </Grid>
             <!-- Icon -->
             <TextBlock Grid.Row="1" x:Name="DeviceIcon" Style="{StaticResource DeviceTileIcon}"></TextBlock>
     
-            <!--TODO: Om tiden tillåter. Lägg till wifi symbol som visar om den är uppkopplad eller inte &#zf1eb; &#xf6ac;-->
+            <!--TODO: Om tiden tillåter. Lägg till wifi symbol som visar om den är uppkopplad eller inte &#xf1eb; &#xf6ac;-->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

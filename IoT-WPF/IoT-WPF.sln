@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure Functions", "Azure Fu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devices", "Devices", "{1706F7C4-B6C4-4F47-96BB-EBE039B0998B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedroomThermometer", "BedroomThermometer\BedroomThermometer.csproj", "{F2CC9508-673C-4B4B-881E-98DFDA14DD42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedroomThermometer", "BedroomThermometer\BedroomThermometer.csproj", "{F2CC9508-673C-4B4B-881E-98DFDA14DD42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
