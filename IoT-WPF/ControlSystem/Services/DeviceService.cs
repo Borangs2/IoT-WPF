@@ -66,7 +66,7 @@ namespace ControlSystem.Services
                                 device.StateInactive = "Off";
                                 break;
 
-                            case "Thermometer":
+                            case "thermometer":
                                 device.IconActive = "\uf2c9";
                                 device.IconInactive = "\uf2cb";
                                 device.FontActive = "/Assets/Fonts/fa-Solid-900.ttf#Font Awesome 6 Free Solid";
