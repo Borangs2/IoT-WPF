@@ -37,11 +37,14 @@
             <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=IsChecked}" Value="true">
                 <Setter Property="Text" Value="{Binding ElementName=deviceTile, Path=DeviceIconActive}"/>
                 <Setter Property="FontFamily" Value="{Binding ElementName=deviceTile, Path=DeviceFontActive}"/>
+                <Setter Property="Opacity" Value="1"/>
+
             </DataTrigger>
 
             <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=IsChecked}" Value="false">
                 <Setter Property="Text" Value="{Binding ElementName=deviceTile, Path=DeviceIconInactive}"/>
                 <Setter Property="FontFamily" Value="{Binding ElementName=deviceTile, Path=DeviceFontInactive}"/>
+                <Setter Property="Opacity" Value="0.4"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
