@@ -130,4 +130,15 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="ThermometerTile" TargetType="Grid">
+        <Setter Property="Background" Value="Gray"/>
+        <Setter Property="Opacity" Value="0.9"/>
+    </Style>
+
+    <Style x:Key="ThermometerText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Padding" Value="10 5"></Setter>
+    </Style>
+
 </ResourceDictionary>

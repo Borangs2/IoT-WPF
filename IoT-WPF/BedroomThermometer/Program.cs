@@ -90,13 +90,13 @@ while (true)
         currentTemperature = currentTemperature + random.Next(-2, 3);
         currentHumidity = currentHumidity + random.Next(-5, 6);
 
-        Console.WriteLine($"Temperature: {currentTemperature}");
-        Console.WriteLine($"Humidity: {currentHumidity}");
+        Console.WriteLine($"Temperature: {currentTemperature}°C");
+        Console.WriteLine($"Humidity: {currentHumidity}%");
         Console.WriteLine();
 
         twinCollection = new TwinCollection();
-        twinCollection["currentTemperature"] = currentTemperature;
-        twinCollection["currentHumidity"] = currentHumidity;
+        twinCollection["currentTemperature"] = $"{currentTemperature}°C";
+        twinCollection["currentHumidity"] = $"{currentHumidity}%";
 
         await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
     }

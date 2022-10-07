@@ -1,5 +1,6 @@
 ﻿using ControlSystem.MVVM.Models;
 using Microsoft.Azure.Devices;
+using Microsoft.Azure.Devices.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,7 @@ namespace ControlSystem.Services
         public async Task<ObservableCollection<DeviceItem>> PopulateDeviceItemsAsync(string locationName, ObservableCollection<DeviceItem> _deviceItems)
         {
             
-            var result = _registryManager.CreateQuery($"SELECT * FROM devices WHERE properties.reported.location = '{locationName.ToLower()}'");
+            var result = _registryManager.CreateQuery($"SELECT * FROM devices WHERE properties.reported.location = '{locationName.ToLower()}' AND properties.reported.deviceType != 'thermometer'");
 
             if (result.HasMoreResults)
             {
@@ -94,6 +95,23 @@ namespace ControlSystem.Services
             }
 
             return _deviceItems;
+        }
+
+        public async Task<ThermometerDevice> GetThermometerAsync(string locationName)
+        {
+            var device = new ThermometerDevice();
+            var result = _registryManager.CreateQuery($"SELECT * FROM devices WHERE properties.reported.location = '{locationName.ToLower()}' AND properties.reported.deviceType = 'thermometer' ");
+
+            foreach (var twin in await result.GetNextAsTwinAsync())
+            {
+                try { device.Temperature = twin.Properties.Reported["currentTemperature"].ToString(); }
+                catch { device.Temperature = "No connection"; }
+
+                try { device.Humidity = twin.Properties.Reported["currentHumidity"].ToString(); }
+                catch { device.Humidity = "No connection"; }
+            }
+
+            return device;
         }
 
         public async Task<ObservableCollection<DeviceItem>> UpdateDeviceItemsAsync(ObservableCollection<DeviceItem> _deviceItems)

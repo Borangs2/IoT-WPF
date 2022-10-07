@@ -11,15 +11,30 @@ using Microsoft.Azure.Devices;
 
 namespace ControlSystem.MVVM.ViewModels;
 
-public class BedroomViewModel
+public class BedroomViewModel : ObservableObject
 {
     public string Title { get; set; } = "Bedroom";
 
     private DeviceService _deviceService = new DeviceService("HostName=WebAPI-Hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=ut5rWU8YxIdBNmKaS74GcXGwJuqus3SiFqkQTSj0Ymo=");
     private ObservableCollection<DeviceItem> _deviceItems;
     private DispatcherTimer _timer;
+    private ThermometerDevice _thermometer = new ThermometerDevice();
 
     public IEnumerable<DeviceItem> DeviceItems => _deviceItems;
+
+    public ThermometerDevice Thermometer
+    {
+        get { return _thermometer; }
+        set
+        {
+            _thermometer = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private string _currentTemperature;
+
+    
 
     public BedroomViewModel()
     {
@@ -42,7 +57,13 @@ public class BedroomViewModel
     private async void timer_tick(object sender, EventArgs e)
     {
         await PopulateDeviceItemsAsync();
+        await GetThermometerData();
         await UpdateDeviceItemsAsync();
+    }
+
+    private async Task GetThermometerData()
+    {
+        Thermometer = await _deviceService.GetThermometerAsync("Bedroom");
     }
 
     public async Task PopulateDeviceItemsAsync()

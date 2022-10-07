@@ -7,7 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ItemsControl x:Name="deviceTileListView" ItemsSource="{Binding DeviceItems}" Style="{StaticResource PageTileContainer}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <local:ThermometerTile Grid.Row="0" Grid.Column="0"/>
+
+        <ItemsControl Grid.Row="1" Grid.ColumnSpan="2" x:Name="deviceTileListView" ItemsSource="{Binding DeviceItems}" Style="{StaticResource PageTileContainer}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <local:DeviceTile 
