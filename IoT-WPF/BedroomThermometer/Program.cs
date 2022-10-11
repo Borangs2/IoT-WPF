@@ -18,7 +18,7 @@ int interval = 30000;
 bool connected = false;
 
 Guid deviceId = Guid.Empty;
-string deviceName = "IntelliThermometer";
+string deviceName = "IntelliThermo";
 string deviceType = "Thermometer";
 string deviceOwner = "Andreas Boräng";
 string location = "Bedroom";
@@ -34,7 +34,7 @@ connectUrl = connectUrl.Replace("*port*", Console.ReadLine());
 
 using IDbConnection connection = new SqlConnection(DbConnectionString);
 
-deviceId = await connection.QueryFirstOrDefaultAsync<Guid>($"SELECT DeviceId FROM devices WHERE DeviceLocation = @DeviceLocation", new {DeviceLocation = location});
+deviceId = await connection.QueryFirstOrDefaultAsync<Guid>($"SELECT DeviceId FROM devices WHERE DeviceLocation = @DeviceLocation AND DeviceType = @DeviceType", new {DeviceLocation = location, DeviceType = deviceType});
 if (deviceId == Guid.Empty)
 {
     Console.WriteLine("New device detected. Generating new deviceId ...");
