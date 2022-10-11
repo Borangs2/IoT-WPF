@@ -37,7 +37,7 @@
 
                 <!-- On/Off Text -->
                 <TextBlock Grid.Column="0" Style="{StaticResource DeviceTileOnOffText}"/>
-                <CheckBox Grid.Column="1" x:Name="OnOffSwitch" Style="{StaticResource DeviceTileOnOffSwitch}"/>
+                <CheckBox Grid.Column="1" x:Name="OnOffSwitch" Click="OnOffSwitch_OnClick" Style="{StaticResource DeviceTileOnOffSwitch}"/>
             </Grid>
 
         </Grid>

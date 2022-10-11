@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.Azure.Devices.Shared;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ControlSystem.MVVM.Models;
+using ControlSystem.Services;
 
 namespace ControlSystem.Components
 {
@@ -20,8 +25,12 @@ namespace ControlSystem.Components
     /// </summary>
     public partial class DeviceTile : UserControl
     {
+        private DeviceService _deviceService;
+        private string _connectionString = "HostName=WebAPI-Hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=ut5rWU8YxIdBNmKaS74GcXGwJuqus3SiFqkQTSj0Ymo=";
         public DeviceTile()
         {
+            _deviceService =
+                new DeviceService(_connectionString);
             InitializeComponent();
         }
 
@@ -79,6 +88,18 @@ namespace ControlSystem.Components
         {
             get { return (string)GetValue(DeviceFontActiveProperty); }
             set { SetValue(DeviceFontActiveProperty, value); }
+        }
+
+        //TODO: Make sure that this function works. Find a way to idntify this device from others
+        private async void OnOffSwitch_OnClick(object sender, RoutedEventArgs e)
+        {
+            OnOffSwitch.IsEnabled = false;
+
+            var button = sender as CheckBox;
+            var deviceItem = (DeviceItem) button!.DataContext;
+
+            await _deviceService.UpdatePoweredStateAsync(OnOffSwitch.IsChecked, deviceItem, _connectionString);
+            OnOffSwitch.IsEnabled = true;
         }
     }
 }

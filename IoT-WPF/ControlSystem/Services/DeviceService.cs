@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ControlSystem.Services
 {
@@ -130,6 +131,18 @@ namespace ControlSystem.Services
             }
 
             return _deviceItems;
+        }
+
+        public async Task UpdatePoweredStateAsync(bool? isChecked, DeviceItem device, string IoTHubConnectionString)
+        {
+            if (isChecked != null)
+            {
+                using ServiceClient serviceClient = ServiceClient.CreateFromConnectionString(IoTHubConnectionString);
+                
+                var directMethod = new CloudToDeviceMethod("ChangePoweredState");
+                directMethod.SetPayloadJson(JsonConvert.SerializeObject(new {poweredState = isChecked}));
+                var result = await serviceClient.InvokeDeviceMethodAsync(device.DeviceId, directMethod);
+            }
         }
     }
 }
