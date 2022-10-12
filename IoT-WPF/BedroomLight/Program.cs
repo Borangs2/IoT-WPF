@@ -14,7 +14,7 @@ string IoTHubConnectionString =
 string DbConnectionString =
     "Server=tcp:iot-wpf.database.windows.net,1433;Initial Catalog=IoT-Devices;Persist Security Info=False;User ID=borangs;Password=HansIsBest1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 bool poweredState = false;
-TimeSpan interval = TimeSpan.FromSeconds(5);
+TimeSpan interval = TimeSpan.FromHours(1);
 bool connected = false;
 
 Guid deviceId = Guid.Empty;
