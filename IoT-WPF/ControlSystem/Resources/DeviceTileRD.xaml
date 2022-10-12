@@ -19,7 +19,6 @@
     </Style>
 
     <!-- Title of tile -->
-
     <Style x:Key="DeviceTileTitle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
@@ -27,7 +26,6 @@
     </Style>
 
     <!-- Icon of tile -->
-
     <Style x:Key="DeviceTileIcon" TargetType="TextBlock">
         <Setter Property="FontSize" Value="60"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -50,7 +48,6 @@
     </Style>
 
     <!-- Text for the toggle button -->
-
     <Style x:Key="DeviceTileOnOffText" TargetType="TextBlock">
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
@@ -69,10 +66,10 @@
     </Style>
 
     <!-- Toggle button -->
-
     <Style x:Key="DeviceTileOnOffSwitch" TargetType="ToggleButton">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Cursor" Value="Hand"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -128,24 +125,34 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
         <Style.Triggers>
-            <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=Visible}" Value="true">
+            <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=IsEnabled}" Value="true">
                 <Setter Property="Opacity" Value="1"/>
             </DataTrigger>
 
-            <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=Visible}" Value="false">
+            <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=IsEnabled}" Value="false">
                 <Setter Property="Opacity" Value="0.4"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
+    <!-- Delete button -->
+    <Style x:Key="DeviceTileDeleteButton" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome-Solid}"/>
+        <Setter Property="Content" Value="&#xf1f8;"/>
+        <Setter Property="Foreground" Value="#F60000"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
 
+    <!-- Tile for specifically thermometers -->
     <Style x:Key="ThermometerTile" TargetType="Grid">
         <Setter Property="Background" Value="Gray"/>
         <Setter Property="Opacity" Value="0.9"/>
     </Style>
 
+    <!-- Text for specifically thermometers -->
     <Style x:Key="ThermometerText" TargetType="TextBlock">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Padding" Value="10 5"></Setter>

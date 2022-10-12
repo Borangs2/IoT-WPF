@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Nodes;
@@ -99,6 +100,15 @@ namespace ControlSystem.Components
 
             await _deviceService.UpdatePoweredStateAsync(OnOffSwitch.IsChecked, deviceItem, _connectionString);
             OnOffSwitch.IsEnabled = true;
+        }
+
+        private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            button.IsEnabled = false;
+            var deviceItem = (DeviceItem) button!.DataContext;
+
+            _deviceService.DeleteDeviceAsync(deviceItem, _connectionString);
         }
     }
 }

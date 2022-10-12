@@ -3,6 +3,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Net.Http.Json;
+using System.Net.Mime;
 using Dapper;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.Devices.Shared;
@@ -13,7 +14,7 @@ string IoTHubConnectionString =
 string DbConnectionString =
     "Server=tcp:iot-wpf.database.windows.net,1433;Initial Catalog=IoT-Devices;Persist Security Info=False;User ID=borangs;Password=HansIsBest1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 bool poweredState = false;
-int interval = 1*60*60;
+TimeSpan interval = TimeSpan.FromSeconds(5);
 bool connected = false;
 
 Guid deviceId = Guid.Empty;
@@ -73,6 +74,7 @@ twinCollection["location"] = location.ToLower();
 await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
 
 await _deviceClient.SetMethodHandlerAsync("ChangePoweredState", ChangePoweredState, null);
+await _deviceClient.SetMethodHandlerAsync("StopDevice", StopDevice, null);
 
 connected = true;
 Console.WriteLine("Device Connected");
@@ -82,6 +84,7 @@ while (true)
     twinCollection["update"] = "jag existerar";
     await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
 
+    Console.WriteLine("Message sent");
     await Task.Delay(interval);
 }
 
@@ -93,4 +96,11 @@ Task<MethodResponse> ChangePoweredState(MethodRequest methodRequest, object user
     Console.WriteLine($"PoweredState now {poweredState}");
 
     return Task.FromResult(new MethodResponse(new byte[0], 200));
+}
+
+Task<MethodResponse> StopDevice(MethodRequest methodRequest, object userContext)
+{
+    Task.Delay(10000);
+    Environment.Exit(0);
+    return null;
 }

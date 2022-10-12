@@ -20,10 +20,22 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Title -->
-                <TextBlock Grid.Row="0" Text="{Binding ElementName=deviceTile, Path=DeviceTitle}"  Style="{StaticResource DeviceTileTitle}"/>
+                
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Title -->
+                    <TextBlock Grid.Row="0" Text="{Binding ElementName=deviceTile, Path=DeviceTitle}"  Style="{StaticResource DeviceTileTitle}"/>
+                    <!-- Delete button -->
+                    <Button Grid.Column="1" Click="DeleteButton_OnClick" Style="{StaticResource DeviceTileDeleteButton}"/>
+                </Grid>
+
                 <!-- Type -->
                 <TextBlock Grid.Row="1" Text="{Binding ElementName=deviceTile, Path=DeviceType}" Style="{StaticResource DeviceTileTitle}" />
+
             </Grid>
             <!-- Icon -->
             <TextBlock Grid.Row="1" x:Name="DeviceIcon" Style="{StaticResource DeviceTileIcon}"></TextBlock>

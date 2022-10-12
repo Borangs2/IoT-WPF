@@ -4,9 +4,12 @@ using Microsoft.Azure.Devices.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
 using Newtonsoft.Json;
 
 namespace ControlSystem.Services
@@ -14,6 +17,7 @@ namespace ControlSystem.Services
     internal class DeviceService
     {
         private readonly RegistryManager _registryManager;
+        private readonly string _dbConnectionString = "Server=tcp:iot-wpf.database.windows.net,1433;Initial Catalog=IoT-Devices;Persist Security Info=False;User ID=borangs;Password=HansIsBest1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public DeviceService(string ioTHubConnectionString)
         {
@@ -22,7 +26,7 @@ namespace ControlSystem.Services
 
         public async Task<ObservableCollection<DeviceItem>> PopulateDeviceItemsAsync(string locationName, ObservableCollection<DeviceItem> _deviceItems)
         {
-            
+
             var result = _registryManager.CreateQuery($"SELECT * FROM devices WHERE properties.reported.location = '{locationName.ToLower()}' AND properties.reported.deviceType != 'thermometer'");
 
             if (result.HasMoreResults)
@@ -138,11 +142,25 @@ namespace ControlSystem.Services
             if (isChecked != null)
             {
                 using ServiceClient serviceClient = ServiceClient.CreateFromConnectionString(IoTHubConnectionString);
-                
+
                 var directMethod = new CloudToDeviceMethod("ChangePoweredState");
-                directMethod.SetPayloadJson(JsonConvert.SerializeObject(new {poweredState = isChecked}));
+                directMethod.SetPayloadJson(JsonConvert.SerializeObject(new { poweredState = isChecked }));
                 var result = await serviceClient.InvokeDeviceMethodAsync(device.DeviceId, directMethod);
             }
+        }
+
+        public async void DeleteDeviceAsync(DeviceItem deviceItem, string IoTHubConnectionString)
+        {
+            using ServiceClient serviceClient = ServiceClient.CreateFromConnectionString(IoTHubConnectionString);
+            var directMethod = new CloudToDeviceMethod("StopDevice");
+
+            serviceClient.InvokeDeviceMethodAsync(deviceItem.DeviceId, directMethod);
+
+            await _registryManager.RemoveDeviceAsync(deviceItem.DeviceId);
+            using IDbConnection connection = new SqlConnection(_dbConnectionString);
+            await connection.ExecuteAsync($"DELETE FROM devices WHERE DeviceId = @DeviceId", new { DeviceId = deviceItem.DeviceId });
+
+            
         }
     }
 }

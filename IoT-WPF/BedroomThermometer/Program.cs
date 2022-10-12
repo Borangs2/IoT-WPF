@@ -51,6 +51,8 @@ else
 
 
 var deviceConnectionString = await connection.QueryFirstOrDefaultAsync<string>("SELECT ConnectionString FROM devices WHERE DeviceId = @DeviceId", new { DeviceId = deviceId });
+DeviceClient _deviceClient = DeviceClient.CreateFromConnectionString(IoTHubConnectionString, deviceId.ToString());
+
 if (string.IsNullOrEmpty(deviceConnectionString))
 {
     Console.WriteLine("Initializing Connection string ...");
@@ -63,7 +65,6 @@ if (string.IsNullOrEmpty(deviceConnectionString))
          new { DeviceId = deviceId, ConnectionString = deviceConnectionString });
 }
 
-DeviceClient _deviceClient = DeviceClient.CreateFromConnectionString(IoTHubConnectionString, deviceId.ToString());
 
 Console.WriteLine("Updating twin properties ...");
 var twinCollection = new TwinCollection();
@@ -74,10 +75,6 @@ twinCollection["poweredState"] = poweredState;
 twinCollection["location"] = location.ToLower();
 await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
 
-Console.WriteLine("Getting last temperatures");
-var twin = await _deviceClient.GetTwinAsync();
-currentTemperature = twin.Properties.Reported["currentTemperature"];
-currentHumidity = twin.Properties.Reported["currentHumidity"];
 
 
 connected = true;
