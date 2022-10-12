@@ -58,8 +58,6 @@ namespace ControlSystem.Services
                         try { device.DeviceType = twin.Properties.Reported["deviceType"].ToString(); }
                         catch { device.DeviceType = "Type Unknown"; }
 
-                        device.DeviceId = twin.DeviceId;
-
                         switch (device.DeviceType.ToLower())
                         {
                             case "light":
@@ -200,9 +198,9 @@ namespace ControlSystem.Services
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns>The twin of the device</returns>
-        public async Task<Twin> GetDeviceTwinAsync(Guid deviceId)
+        public async Task<Twin> GetDeviceTwinAsync(string deviceId)
         {
-            return await _registryManager.GetTwinAsync(deviceId.ToString());
+            return await _registryManager.GetTwinAsync(deviceId);
         }
     }
 }

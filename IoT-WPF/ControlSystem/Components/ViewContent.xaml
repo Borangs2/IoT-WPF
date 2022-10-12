@@ -22,6 +22,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <local:DeviceTile 
+                        DeviceId="{Binding DeviceId}"
                         DeviceTitle="{Binding DeviceTitle}"
                         DeviceType="{Binding DeviceType}"
                         DeviceIconActive="{Binding IconActive}"

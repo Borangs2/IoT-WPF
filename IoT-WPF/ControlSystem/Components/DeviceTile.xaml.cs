@@ -18,7 +18,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ControlSystem.MVVM.Models;
 using ControlSystem.Services;
-using Microsoft.Azure.Amqp.Framing;
 
 namespace ControlSystem.Components
 {
@@ -34,13 +33,12 @@ namespace ControlSystem.Components
             _deviceService =
                 new DeviceService(_connectionString);
             InitializeComponent();
-            SetOnOffSwitch().ConfigureAwait(false);
         }
 
-        public static readonly DependencyProperty DeviceIdProperty = DependencyProperty.Register("DeviceId", typeof(Guid), typeof(DeviceTile));
-        public Guid DeviceId
+        public static readonly DependencyProperty DeviceIdProperty = DependencyProperty.Register("DeviceId", typeof(string), typeof(DeviceTile));
+        public string DeviceId
         {
-            get { return (Guid)GetValue(DeviceIdProperty); }
+            get { return (string)GetValue(DeviceIdProperty); }
             set { SetValue(DeviceIdProperty, value); }
         }
 
@@ -122,8 +120,17 @@ namespace ControlSystem.Components
 
         private async Task SetOnOffSwitch()
         {
-            var twin = await _deviceService.GetDeviceTwinAsync(DeviceId);
-            OnOffSwitch.IsChecked = twin.Properties.Reported["poweredState"];
+            if (DeviceType.ToLower() != "thermometer")
+            {
+                var twin = await _deviceService.GetDeviceTwinAsync(DeviceId);
+                OnOffSwitch.IsChecked = twin.Properties.Reported["poweredState"];
+            }
+        }
+
+        private async void StupidButton_OnInitialized(object? sender, EventArgs e)
+        {
+            await Task.Delay(1000);
+            await SetOnOffSwitch();
         }
     }
 }

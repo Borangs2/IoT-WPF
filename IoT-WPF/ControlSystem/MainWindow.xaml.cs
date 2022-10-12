@@ -30,10 +30,5 @@ namespace ControlSystem
             if (e.ChangedButton == MouseButton.Left)
                 DragMove();
         }
-
-        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
     }
 }
