@@ -90,7 +90,6 @@ namespace ControlSystem.Components
             set { SetValue(DeviceFontActiveProperty, value); }
         }
 
-        //TODO: Make sure that this function works. Find a way to idntify this device from others
         private async void OnOffSwitch_OnClick(object sender, RoutedEventArgs e)
         {
             OnOffSwitch.IsEnabled = false;

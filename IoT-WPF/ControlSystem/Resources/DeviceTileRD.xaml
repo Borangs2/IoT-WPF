@@ -128,6 +128,16 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=Visible}" Value="true">
+                <Setter Property="Opacity" Value="1"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding ElementName=OnOffSwitch, Path=Visible}" Value="false">
+                <Setter Property="Opacity" Value="0.4"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
 

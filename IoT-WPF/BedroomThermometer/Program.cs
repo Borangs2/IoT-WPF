@@ -23,7 +23,8 @@ string deviceType = "Thermometer";
 string deviceOwner = "Andreas Boräng";
 string location = "Bedroom";
 
-
+var currentTemperature = 20;
+var currentHumidity = 40;
 
 
 Console.WriteLine("Initializing Device. Please wait ...");
@@ -73,13 +74,18 @@ twinCollection["poweredState"] = poweredState;
 twinCollection["location"] = location.ToLower();
 await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
 
+Console.WriteLine("Getting last temperatures");
+var twin = await _deviceClient.GetTwinAsync();
+currentTemperature = twin.Properties.Reported["currentTemperature"];
+currentHumidity = twin.Properties.Reported["currentHumidity"];
+
+
 connected = true;
 Console.WriteLine("Device Connected");
 
 // ----------------------------------------- \\
 
-var currentTemperature = 20;
-var currentHumidity = 40;
+
 
 
 while (true)

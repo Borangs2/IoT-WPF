@@ -13,7 +13,7 @@ string IoTHubConnectionString =
 string DbConnectionString =
     "Server=tcp:iot-wpf.database.windows.net,1433;Initial Catalog=IoT-Devices;Persist Security Info=False;User ID=borangs;Password=HansIsBest1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 bool poweredState = false;
-int interval = 30000;
+int interval = 1*60*60;
 bool connected = false;
 
 Guid deviceId = Guid.Empty;
@@ -72,8 +72,25 @@ twinCollection["poweredState"] = poweredState;
 twinCollection["location"] = location.ToLower();
 await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
 
+await _deviceClient.SetMethodHandlerAsync("ChangePoweredState", ChangePoweredState, null);
+
 connected = true;
 Console.WriteLine("Device Connected");
 
-Console.WriteLine("Press any key to close");
-Console.ReadKey();
+while (true)
+{
+    twinCollection["update"] = "jag existerar";
+    await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
+
+    await Task.Delay(interval);
+}
+
+Task<MethodResponse> ChangePoweredState(MethodRequest methodRequest, object userContext)
+{
+    poweredState = !poweredState;
+    twinCollection["poweredState"] = poweredState;
+    _deviceClient.UpdateReportedPropertiesAsync(twinCollection).GetAwaiter();
+    Console.WriteLine($"PoweredState now {poweredState}");
+
+    return Task.FromResult(new MethodResponse(new byte[0], 200));
+}
