@@ -52,13 +52,13 @@ namespace ControlSystem.Services
                         try { device.DeviceTitle = twin.Properties.Reported["deviceTitle"].ToString(); }
                         catch
                         {
-                            //device.DeviceTitle = twin.DeviceId;
                             device.DeviceTitle = "Name Unknown";
                         }
 
                         try { device.DeviceType = twin.Properties.Reported["deviceType"].ToString(); }
                         catch { device.DeviceType = "Type Unknown"; }
 
+                        device.DeviceId = twin.DeviceId;
 
                         switch (device.DeviceType.ToLower())
                         {
@@ -200,7 +200,7 @@ namespace ControlSystem.Services
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns>The twin of the device</returns>
-        public async Task<Twin> GetDeviceTwin(Guid deviceId)
+        public async Task<Twin> GetDeviceTwinAsync(Guid deviceId)
         {
             return await _registryManager.GetTwinAsync(deviceId.ToString());
         }

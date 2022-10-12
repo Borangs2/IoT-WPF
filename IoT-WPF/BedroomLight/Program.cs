@@ -73,6 +73,11 @@ twinCollection["poweredState"] = poweredState;
 twinCollection["location"] = location.ToLower();
 await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);
 
+var twin = await _deviceClient.GetTwinAsync();
+poweredState = twin.Properties.Reported["poweredState"];
+
+
+
 await _deviceClient.SetMethodHandlerAsync("ChangePoweredState", ChangePoweredState, null);
 await _deviceClient.SetMethodHandlerAsync("StopDevice", StopDevice, null);
 

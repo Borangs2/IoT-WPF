@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ControlSystem.MVVM.Models;
 using ControlSystem.Services;
+using Microsoft.Azure.Amqp.Framing;
 
 namespace ControlSystem.Components
 {
@@ -33,6 +34,14 @@ namespace ControlSystem.Components
             _deviceService =
                 new DeviceService(_connectionString);
             InitializeComponent();
+            SetOnOffSwitch().ConfigureAwait(false);
+        }
+
+        public static readonly DependencyProperty DeviceIdProperty = DependencyProperty.Register("DeviceId", typeof(Guid), typeof(DeviceTile));
+        public Guid DeviceId
+        {
+            get { return (Guid)GetValue(DeviceIdProperty); }
+            set { SetValue(DeviceIdProperty, value); }
         }
 
         public static readonly DependencyProperty DeviceTitleProperty = DependencyProperty.Register("DeviceTitle", typeof(string), typeof(DeviceTile));
@@ -109,6 +118,12 @@ namespace ControlSystem.Components
             var deviceItem = (DeviceItem) button!.DataContext;
 
             _deviceService.DeleteDeviceAsync(deviceItem, _connectionString);
+        }
+
+        private async Task SetOnOffSwitch()
+        {
+            var twin = await _deviceService.GetDeviceTwinAsync(DeviceId);
+            OnOffSwitch.IsChecked = twin.Properties.Reported["poweredState"];
         }
     }
 }
