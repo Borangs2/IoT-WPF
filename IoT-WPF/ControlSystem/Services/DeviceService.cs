@@ -24,6 +24,14 @@ namespace ControlSystem.Services
             _registryManager = RegistryManager.CreateFromConnectionString(ioTHubConnectionString);
         }
 
+        /// <summary>
+        /// Populates <paramref name="_deviceItems"/> with all devices from <paramref name="locationName"/>
+        /// </summary>
+        /// <param name="locationName"></param>
+        /// <param name="_deviceItems"></param>
+        /// <returns>
+        /// A list of type <see cref="ObservableCollection{DeviceItem}"/> with all devices at <paramref name="locationName"/>
+        /// </returns>
         public async Task<ObservableCollection<DeviceItem>> PopulateDeviceItemsAsync(string locationName, ObservableCollection<DeviceItem> _deviceItems)
         {
 
@@ -102,6 +110,13 @@ namespace ControlSystem.Services
             return _deviceItems;
         }
 
+        /// <summary>
+        /// Gets any thermometers at <paramref name="locationName"/> if any exists
+        /// </summary>
+        /// <param name="locationName"></param>
+        /// <returns>
+        /// The first ThermometerDevice at <paramref name="locationName"/>
+        /// </returns>
         public async Task<ThermometerDevice> GetThermometerAsync(string locationName)
         {
             var device = new ThermometerDevice();
@@ -119,6 +134,14 @@ namespace ControlSystem.Services
             return device;
         }
 
+        /// <summary>
+        /// Updates the <paramref name="_deviceItems"/> collection
+        /// </summary>
+        /// <remarks>
+        /// Inserts new devices and removes deleted devices from the list
+        /// </remarks>
+        /// <param name="_deviceItems"></param>
+        /// <returns></returns>
         public async Task<ObservableCollection<DeviceItem>> UpdateDeviceItemsAsync(ObservableCollection<DeviceItem> _deviceItems)
         {
             var removeList = new List<DeviceItem>();
@@ -137,6 +160,12 @@ namespace ControlSystem.Services
             return _deviceItems;
         }
 
+        /// <summary>
+        /// Updates the powered state in the twin of <paramref name="device"/> based on <paramref name="isChecked"/>
+        /// </summary>
+        /// <param name="isChecked"></param>
+        /// <param name="device"></param>
+        /// <param name="IoTHubConnectionString"></param>
         public async Task UpdatePoweredStateAsync(bool? isChecked, DeviceItem device, string IoTHubConnectionString)
         {
             if (isChecked != null)
@@ -149,6 +178,11 @@ namespace ControlSystem.Services
             }
         }
 
+        /// <summary>
+        /// Deletes the specified <paramref name="deviceItem"/>
+        /// </summary>
+        /// <param name="deviceItem"></param>
+        /// <param name="IoTHubConnectionString"></param>
         public async void DeleteDeviceAsync(DeviceItem deviceItem, string IoTHubConnectionString)
         {
             using ServiceClient serviceClient = ServiceClient.CreateFromConnectionString(IoTHubConnectionString);
@@ -159,8 +193,16 @@ namespace ControlSystem.Services
             await _registryManager.RemoveDeviceAsync(deviceItem.DeviceId);
             using IDbConnection connection = new SqlConnection(_dbConnectionString);
             await connection.ExecuteAsync($"DELETE FROM devices WHERE DeviceId = @DeviceId", new { DeviceId = deviceItem.DeviceId });
+        }
 
-            
+        /// <summary>
+        /// Gets the specified devices twin of device with id <paramref name="deviceId"/>
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns>The twin of the device</returns>
+        public async Task<Twin> GetDeviceTwin(Guid deviceId)
+        {
+            return await _registryManager.GetTwinAsync(deviceId.ToString());
         }
     }
 }
