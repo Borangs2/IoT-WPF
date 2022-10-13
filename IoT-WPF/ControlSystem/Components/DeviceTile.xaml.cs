@@ -35,6 +35,13 @@ namespace ControlSystem.Components
             InitializeComponent();
         }
 
+        public static readonly DependencyProperty DeviceIdProperty = DependencyProperty.Register("DeviceId", typeof(string), typeof(DeviceTile));
+        public string DeviceId
+        {
+            get { return (string)GetValue(DeviceIdProperty); }
+            set { SetValue(DeviceIdProperty, value); }
+        }
+
         public static readonly DependencyProperty DeviceTitleProperty = DependencyProperty.Register("DeviceTitle", typeof(string), typeof(DeviceTile));
         public string DeviceTitle
         {
@@ -109,6 +116,21 @@ namespace ControlSystem.Components
             var deviceItem = (DeviceItem) button!.DataContext;
 
             _deviceService.DeleteDeviceAsync(deviceItem, _connectionString);
+        }
+
+        private async Task SetOnOffSwitch()
+        {
+            if (DeviceType.ToLower() != "thermometer")
+            {
+                var twin = await _deviceService.GetDeviceTwinAsync(DeviceId);
+                OnOffSwitch.IsChecked = twin.Properties.Reported["poweredState"];
+            }
+        }
+
+        private async void StupidButton_OnInitialized(object? sender, EventArgs e)
+        {
+            await Task.Delay(1000);
+            await SetOnOffSwitch();
         }
     }
 }

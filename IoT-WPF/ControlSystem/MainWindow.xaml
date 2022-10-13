@@ -21,7 +21,7 @@
     </Window.DataContext>
 
     <Grid>
-        <Border MouseDown="TitleBar_MouseDown" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+        <Border MouseDown="TitleBar_MouseDown">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

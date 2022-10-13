@@ -18,10 +18,10 @@ TimeSpan interval = TimeSpan.FromHours(1);
 bool connected = false;
 
 Guid deviceId = Guid.Empty;
-string deviceName = "IntelliLight1";
-string deviceType = "Light";
+string deviceName = "IntelliStove";
+string deviceType = "Stove";
 string deviceOwner = "Andreas Boräng";
-string location = "Bedroom";
+string location = "Kitchen";
 
 
 
@@ -34,7 +34,7 @@ connectUrl = connectUrl.Replace("*port*", Console.ReadLine());
 
 using IDbConnection connection = new SqlConnection(DbConnectionString);
 
-deviceId = await connection.QueryFirstOrDefaultAsync<Guid>("SELECT DeviceId FROM devices WHERE DeviceLocation = @DeviceLocation AND DeviceType = @DeviceType AND DeviceTitle = @DeviceName", new { DeviceLocation = location, DeviceType = deviceType, DeviceName = deviceName }); 
+deviceId = await connection.QueryFirstOrDefaultAsync<Guid>("SELECT DeviceId FROM devices WHERE DeviceLocation = @DeviceLocation AND DeviceType = @DeviceType AND DeviceTitle = @DeviceName", new { DeviceLocation = location, DeviceType = deviceType, DeviceName = deviceName });
 if (deviceId == Guid.Empty)
 {
     Console.WriteLine("New device detected. Generating new deviceId ...");

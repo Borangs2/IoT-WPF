@@ -52,6 +52,7 @@
                 <CheckBox Grid.Column="1" x:Name="OnOffSwitch" Click="OnOffSwitch_OnClick" Style="{StaticResource DeviceTileOnOffSwitch}"/>
             </Grid>
 
+            <Button x:Name="StupidButton" Visibility="Hidden" Initialized="StupidButton_OnInitialized"/>
         </Grid>
     </Border>
 </UserControl>
